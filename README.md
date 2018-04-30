@@ -1,3 +1,3 @@
 # フロントエンド開発環境
-- npm scripts
-- webpack
+- npm-scripts … パッケージ管理およびタスク実行
+- webpack … バンドルモジューラー
