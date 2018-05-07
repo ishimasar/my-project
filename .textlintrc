@@ -4,7 +4,10 @@
   "rules": {
     "preset-japanese": true,
     "prh": {
-      "rulePaths" :["./baigie_rules.yml"],
+      "rulePaths" :[
+        "./prh_basic_rules.yml",
+        "./textlint_rules.yml"
+      ]
     },
     // よくある誤用
     "ja-no-abusage": true,
@@ -40,6 +43,9 @@
       "preferInBody": "である",
       "preferInList": "である",
       "strict": true  // 文末以外でも敬体と常体を厳しくチェックするかどうか
-    }
+    },
+    // エクスクラメーションマークに対するチェック
+    "no-exclamation-question-mark": true,
+    "prefer-tari-tari": true
   }
 }
