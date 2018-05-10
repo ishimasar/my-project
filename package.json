@@ -24,6 +24,7 @@
     "eslint-config-google": "^0.9.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
+    "imagemin-cli": "^3.0.0",
     "n": "^2.1.8",
     "node-sass": "^4.9.0",
     "npm-run-all": "^4.1.2",
@@ -33,6 +34,7 @@
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.1",
     "prettier-stylelint": "^0.4.2",
+    "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
     "serviceworker-webpack-plugin": "^0.2.3",
     "stylelint-config-standard": "^18.2.0",
@@ -61,9 +63,12 @@
   "scripts": {
     "format": "prettier-stylelint --quiet --write src/scss/style.scss",
     "watch:server": "browser-sync start --config bs-config.js",
-    "watch:webpack": "webpack -w",
+    "watch:webpack": "webpack -w --mode production",
+    "watch:webpack-d": "webpack -w --mode development",
     "w": "npm-run-all -p watch:webpack watch:server",
-    "textlint": "textlint"
+    "textlint": "textlint",
+    "build:images": "imagemin src/images/* -o dist/images",
+    "clean": "rimraf dist/{css/*,js/*,images/*}"
   },
   "repository": {
     "type": "git",
