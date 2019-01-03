@@ -1,0 +1,117 @@
+Arguments: 
+  /Users/masa_ishii/.nodebrew/node/v10.0.0/bin/node /usr/local/Cellar/yarn/1.12.3/libexec/bin/yarn.js install
+
+PATH: 
+  /opt/local/bin:/opt/local/sbin:/Users/masa_ishii/.nodebrew/current/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.12.3
+
+Node version: 
+  10.0.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/Users/masa_ishii/myProject/node_modules/@textlint/fixer-formatter/node_modules/ansi-regex'
+
+npm manifest: 
+  {
+    "name": "masa_ishii",
+    "version": "1.0.0",
+    "description": "- a - b - c",
+    "main": "app.js",
+    "directories": {
+      "test": "test"
+    },
+    "dependencies": {
+      "g": "^2.0.1",
+      "html-cli": "^1.0.0",
+      "pretty": "^2.0.0",
+      "textlint-rule-no-exclamation-question-mark": "^1.0.2",
+      "textlint-rule-prefer-tari-tari": "^1.0.3",
+      "textlint-rule-prh": "^5.0.1"
+    },
+    "devDependencies": {
+      "autoprefixer": "^8.3.0",
+      "browser-sync": "^2.23.7",
+      "browsersync-ssi": "^0.2.4",
+      "connect-ssi": "^1.1.1",
+      "css-loader": "^0.28.11",
+      "csscomb": "^4.2.0",
+      "csscomb-loader": "0.0.2",
+      "eslint-config-google": "^0.9.1",
+      "extract-text-webpack-plugin": "^4.0.0-beta.0",
+      "file-loader": "^1.1.11",
+      "imagemin": "^6.0.0",
+      "imagemin-cli": "^3.0.0",
+      "imagemin-gifsicle": "^5.2.0",
+      "imagemin-mozjpeg": "^7.0.0",
+      "imagemin-pngquant": "^6.0.0",
+      "imagemin-svgo": "^7.0.0",
+      "n": "^2.1.8",
+      "node-sass": "^4.9.0",
+      "npm-run-all": "^4.1.2",
+      "npx": "^10.2.0",
+      "postcss-loader": "^2.1.4",
+      "prettier": "^1.12.0",
+      "prettier-eslint": "^8.8.1",
+      "prettier-eslint-cli": "^4.7.1",
+      "prettier-stylelint": "^0.4.2",
+      "rimraf": "^2.6.2",
+      "sass-loader": "^7.0.1",
+      "serviceworker-webpack-plugin": "^0.2.3",
+      "style-loader": "^0.21.0",
+      "stylelint-config-standard": "^18.2.0",
+      "stylelint-webpack-plugin": "^0.10.4",
+      "textlint": "^10.2.1",
+      "textlint-plugin-html": "^0.1.7",
+      "textlint-rule-ja-hiragana-hojodoushi": "^1.0.4",
+      "textlint-rule-ja-no-abusage": "^1.2.1",
+      "textlint-rule-ja-no-redundant-expression": "^2.0.0",
+      "textlint-rule-ja-no-successive-word": "^1.0.2",
+      "textlint-rule-max-ten": "^2.0.3",
+      "textlint-rule-no-doubled-conjunction": "^1.0.2",
+      "textlint-rule-no-doubled-conjunctive-particle-ga": "^1.0.2",
+      "textlint-rule-no-doubled-joshi": "^3.5.1",
+      "textlint-rule-no-dropping-the-ra": "^1.1.2",
+      "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
+      "textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet": "^1.0.1",
+      "textlint-rule-no-nfd": "^1.0.1",
+      "textlint-rule-preset-japanese": "^4.0.0",
+      "ts-loader": "^4.2.0",
+      "typescript": "^2.8.3",
+      "uglifyjs-webpack-plugin": "^1.2.5",
+      "webpack": "^4.6.0",
+      "webpack-cli": "^2.0.15"
+    },
+    "scripts": {
+      "format": "prettier-stylelint --quiet --write src/scss/style.scss",
+      "watch:server": "browser-sync start --config bs-config.js",
+      "watch:webpack": "webpack -w --mode production",
+      "watch:webpack-d": "webpack -w --mode development",
+      "w": "npm-run-all -p watch:webpack watch:server",
+      "textlint": "textlint",
+      "build:images": "imagemin src/images/* -o dist/images",
+      "clean": "rimraf dist/{css/*,js/*,images/*}",
+      "imagemin": "node index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ishimasar/test.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ishimasar/test/issues"
+    },
+    "homepage": "https://github.com/ishimasar/test#readme",
+    "keywords": []
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

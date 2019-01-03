@@ -4,10 +4,7 @@
   "rules": {
     "preset-japanese": true,
     "prh": {
-      "rulePaths" :[
-        "./prh_basic_rules.yml",
-        "./textlint_rules.yml"
-      ]
+      "rulePaths": ["./prh_basic_rules.yml", "./textlint_rules.yml"]
     },
     // よくある誤用
     "ja-no-abusage": true,
@@ -19,7 +16,7 @@
     "no-dropping-the-ra": true,
     // 一文における読点「、」の数
     "max-ten": {
-      "max" : 3
+      "max": 3
     },
     // 逆接の接続助詞「が」が一文中に複数回使用されていないか
     "no-doubled-conjunctive-particle-ga": true,
@@ -27,7 +24,7 @@
     "no-doubled-conjunction": true,
     // 文中に同じ助詞が複数登場していないか
     "no-doubled-joshi": {
-      "min_interval" : 1,
+      "min_interval": 1,
       "strict": false,
       "allow": []
     },
@@ -39,10 +36,10 @@
     "ja-no-successive-word": true,
     // 常体 (である調) に統一する
     "no-mix-dearu-desumasu": {
-      "preferInHeader": "である",  // "" (自動) or "である" or "ですます"
+      "preferInHeader": "である", // "" (自動) or "である" or "ですます"
       "preferInBody": "である",
       "preferInList": "である",
-      "strict": true  // 文末以外でも敬体と常体を厳しくチェックするかどうか
+      "strict": true // 文末以外でも敬体と常体を厳しくチェックするかどうか
     },
     // エクスクラメーションマークに対するチェック
     "no-exclamation-question-mark": true,
