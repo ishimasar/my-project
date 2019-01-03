@@ -1,9 +1,14 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "parser": ["css"],
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "extends": ["stylelint-config-standard", "./node_modules/prettier-stylelint/config.js"],
   "rules": {
     "indentation": 2,
     "string-quotes": "double",
     "declaration-colon-newline-after": null,
-    "value-list-comma-newline-after": "never-multi-line"
+    "value-list-comma-newline-after": "never-multi-line",
+    "length-zero-no-unit": true, // 値が「0」なら単位を省略する
+    "number-leading-zero": "always", // 小数点の頭の「0」は省略する
+    "color-hex-length": "short" // HEX形式のカラーコードは3文字で表記する
   }
 }

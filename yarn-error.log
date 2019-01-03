@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/masa_ishii/.nodebrew/node/v10.0.0/bin/node /usr/local/Cellar/yarn/1.12.3/libexec/bin/yarn.js install
+  /Users/masa_ishii/.nodebrew/node/v10.0.0/bin/node /usr/local/Cellar/yarn/1.12.3/libexec/bin/yarn.js add -D stylelint-scss stylelint-config-standard prettier-stylelint
 
 PATH: 
   /opt/local/bin:/opt/local/sbin:/Users/masa_ishii/.nodebrew/current/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/Users/masa_ishii/myProject/node_modules/@textlint/fixer-formatter/node_modules/ansi-regex'
+  Error: EACCES: permission denied, mkdir '/Users/masa_ishii/myProject/node_modules/@textlint/fixer-formatter/node_modules/is-fullwidth-code-point'
 
 npm manifest: 
   {
@@ -83,8 +83,8 @@ npm manifest:
       "ts-loader": "^4.2.0",
       "typescript": "^2.8.3",
       "uglifyjs-webpack-plugin": "^1.2.5",
-      "webpack": "^4.6.0",
-      "webpack-cli": "^2.0.15"
+      "webpack": "^4.25.1",
+      "webpack-cli": "^3.1.2"
     },
     "scripts": {
       "format": "prettier-stylelint --quiet --write src/scss/style.scss",
@@ -94,8 +94,7 @@ npm manifest:
       "w": "npm-run-all -p watch:webpack watch:server",
       "textlint": "textlint",
       "build:images": "imagemin src/images/* -o dist/images",
-      "clean": "rimraf dist/{css/*,js/*,images/*}",
-      "imagemin": "node index.js"
+      "clean": "rimraf dist/{css/*,js/*,images/*}"
     },
     "repository": {
       "type": "git",

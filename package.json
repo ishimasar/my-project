@@ -10,6 +10,8 @@
     "g": "^2.0.1",
     "html-cli": "^1.0.0",
     "pretty": "^2.0.0",
+    "stylelint": "^9.9.0",
+    "stylelint-scss": "^3.4.4",
     "textlint-rule-no-exclamation-question-mark": "^1.0.2",
     "textlint-rule-prefer-tari-tari": "^1.0.3",
     "textlint-rule-prh": "^5.0.1"
