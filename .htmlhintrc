@@ -1,0 +1,28 @@
+{
+  // true設定
+  "tagname-lowercase": true,            // タグ名は小文字
+  "attr-lowercase": true,               // 属性名は小文字
+  "attr-value-double-quotes": true,     // 属性値は二重引用符(ダブルクォート)囲み
+  "attr-value-not-empty": true,         // 属性値は空でない
+  "attr-no-duplication": true,          // 属性名が重複していない
+  "tag-pair": true,                     // タグが開き閉じになっている
+  "spec-char-escape": true,             // 特殊文字がエスケープされている
+  "id-unique": true,                    // id属性はファイル内でユニーク(唯一)
+  "src-not-empty": true,                // aタグのsrc属性値が空でない
+  "title-require": true,                // titleタグがある
+  "alt-require": true,                  // imgタグにalt属性がある
+  "space-tab-mixed-disabled": "space",  // スペースとタブの行頭混在禁止
+  "attr-unsafe-chars": true,            // 属性値に安全でない文字の使用禁止
+  "head-script-disabled": true          // headタグの中でscriptタグ使用禁止
+
+  // false設定
+  "doctype-first": false,               // 最初にdoctype宣言されている
+  "doctype-html5": false,               // doctypeはhtml5
+  "tag-self-close": false,              // 空タグ(空要素)は自身で閉じている
+  "id-class-value": false,              // id、class表記は規則に該当している
+  "style-disabled": false,              // styleタグ使用禁止
+  "inline-style-disabled": false,       // インラインスタイル使用禁止
+  "inline-script-disabled": false,      // インラインスクリプト使用禁止
+  "id-class-ad-disabled": false,        // id、classの広告関連キーワード(ad-)使用禁止
+  "href-abs-or-rel": false,             // href属性値は絶対的または相対的
+}
