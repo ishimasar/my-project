@@ -1,0 +1,18 @@
+{
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "extends": [
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "prettier": [
+      true,
+      {
+        "singleQuote": true, // 文字列はシングルクオートで囲む
+        "semi": false // 文末のセミコロン(;)は省く。prettierのデフォルトはtrue
+      }
+    ]
+  }
+}

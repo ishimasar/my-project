@@ -1,70 +1,20 @@
-@charset 'utf-8';
+/**
+ * # style.scss
+ * - partialを集約したscssファイル -> dext/assets/css/app.cssへコンパイル
+ * - glob(*)指定でディレクトリ直下すべてのファイルをimportしている
+ * - 以下ディレクトリ内であれば個別scssファイル新規作成時の指定記述は不要
+ * ----------
+ * ## ディレクトリ構成
+ * - base    = リセットCSSや変数・mixinなど各種設定 ≒ foundation
+ * - layout  -> サイトの骨格(ワイヤーフレーム)
+ * - ui      -> UIパーツとして独立性高く、固有名称で呼べるほどポピュラーなcomponent群
+ * - content -> プロジェクト(当サイト)固有のコンテキストを持ったスタイル(UI含)
+ * - utility -> 必要以上の使用は好ましくないが上記に入らない便利スタイル
+ * ----------
+ */
 
-/* ここがモーダルウィンドウの表示を切り替える仕掛け */
-.hidden {
-  visibility: hidden;
-  display: flex;
-  display: grid;
-}
-
-/* ここからはデザイン */
-html,
-body {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.modal-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-box {
-  width: 200px;
-  height: 150px;
-  background: #fff;
-  box-shadow: 5px 5px 2px 0 #666;
-}
-
-.modal-box p {
-  color: #666;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 50px;
-}
-
-.button {
-  display: block;
-  width: 100px;
-  margin: auto;
-  padding: 10px;
-  border: 2px solid #ff90a4;
-  color: #ff90a4;
-  cursor: pointer;
-  text-decoration: none;
-
-  &:hover {
-    background-color: rgba(255, 144, 164, 0.1);
-  }
-
-  &:active {
-    color: #ff8299;
-    border-color: #ff8299;
-  }
-}
-
-.content {
-  padding: 20px;
-  appearance: none;
-}
+@import "base/*";
+// @import "layout/*";
+@import "ui/*";
+@import "content/*";
+// @import "utility/*";

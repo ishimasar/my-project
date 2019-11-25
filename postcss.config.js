@@ -1,11 +1,14 @@
 module.exports = {
   plugins: {
-    'autoprefixer': {
-      'browsers': [
-        'last 2 versions', 'ie >= 11', 'Android >= 7'
+    autoprefixer: {
+      overrideBrowserslist: [
+        'last 2 versions',
+        'ie >= 11',
+        'iOS >= 9',
+        'Android >= 4.4',
       ],
-      'grid': true,
-      // 'cascade': false
-    }
-  }
-}
+      grid: true,
+      cascade: false,
+    },
+  },
+};

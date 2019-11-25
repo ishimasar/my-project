@@ -1,5 +1,5 @@
 {
-  // true設定
+  // true
   "tagname-lowercase": true,            // タグ名は小文字
   "attr-lowercase": true,               // 属性名は小文字
   "attr-value-double-quotes": true,     // 属性値は二重引用符(ダブルクォート)囲み
@@ -15,7 +15,7 @@
   "attr-unsafe-chars": true,            // 属性値に安全でない文字の使用禁止
   "head-script-disabled": true          // headタグの中でscriptタグ使用禁止
 
-  // false設定
+  // false
   "doctype-first": false,               // 最初にdoctype宣言されている
   "doctype-html5": false,               // doctypeはhtml5
   "tag-self-close": false,              // 空タグ(空要素)は自身で閉じている

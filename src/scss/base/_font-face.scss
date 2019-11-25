@@ -1,0 +1,159 @@
+/**
+ * # font.scss
+ *   - webフォントファイル読み込み記述(@font-face)用
+*/
+
+/* 欧文フォント */
+
+// @import url('https://fonts.googleapis.com/css?family=Cabin:400,700');
+
+@font-face {
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/Cabin/Cabin-Regular.woff2") format("woff2"),
+    url("/font/Cabin/Cabin-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/font/Cabin/Cabin-Bold.woff2") format("woff2"),
+    url("/font/Cabin/Cabin-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/Lato/Lato-Regular.woff2") format("woff2"),
+    url("/font/Lato/Lato-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/font/Lato/Lato-Bold.woff2") format("woff2"),
+    url("/font/Lato/Lato-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/Roboto_Condensed/RobotoCondensed-Regular.woff2")
+    format("woff2"),
+    url("/font/Roboto_Condensed/RobotoCondensed-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/font/Roboto_Condensed/RobotoCondensed-Bold.woff2") format("woff2"),
+    url("/font/Roboto_Condensed/RobotoCondensed-Bold.woff") format("woff");
+}
+
+/* 和文フォント */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/NotoSansCJKjp-subset/NotoSansJp-Regular.woff2")
+    format("woff2"),
+    url("/font/NotoSansCJKjp-subset/NotoSansJp-Regular.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: bold;
+  font-weight: 700;
+  src: url("/font/NotoSansCJKjp-subset/NotoSansJp-Bold.woff2") format("woff2"),
+    url("/font/NotoSansCJKjp-subset/NotoSansJp-Bold.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/NotoSerifCJKjp-subset/NotoSerifJp-Regular.woff2")
+    format("woff2"),
+    url("/font/NotoSerifCJKjp-subset/NotoSerifJp-Regular.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: bold;
+  font-weight: 700;
+  src: url("/font/NotoSerifCJKjp-subset/NotoSerifJp-Bold.woff2") format("woff2"),
+    url("/font/NotoSerifCJKjp-subset/NotoSerifJp-Bold.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 100;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Thin.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Thin.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 200;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Light.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Light.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/font/YakuHanJPs/YakuHanJPs-DemiLight.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-DemiLight.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Regular.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Regular.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Medium.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Medium.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Bold.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Bold.woff") format("woff");
+  // font-display: swap;
+}
+
+@font-face {
+  font-family: "YakuHanJPs";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/font/YakuHanJPs/YakuHanJPs-Black.woff2") format("woff2"),
+    url("/font/YakuHanJPs/YakuHanJPs-Black.woff") format("woff");
+  // font-display: swap;
+}

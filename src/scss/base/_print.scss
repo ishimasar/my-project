@@ -1,0 +1,15 @@
+/**
+ * # print.scss
+ *   - ページ印刷用CSS
+*/
+
+/**
+ * 必ず@media printブラケット({})の中に記述
+ * 当該ページにおけるメインコンテンツ以外は印刷しない
+ * 共通header・footer、asideなどは基本除外
+ */
+@media print {
+  body > *:not(main) {
+    display: none;
+  }
+}

@@ -1,34 +1,18 @@
-const ssi = require("./node_modules/browsersync-ssi");
-// const connectSSI = require('./node_modules/connect-ssi');
+// const ssi = require('./node_modules/browsersync-ssi');
+const connectSSI = require('./node_modules/connect-ssi');
 
 module.exports = {
-  files: "./src/**/*.css, ./src/**/*.js, ./src/**/*.html",
+  files:
+    './dest/assets/*.css, ./dest/assets/*.js, ./dest/*.html, ./dest/**/*.html',
   server: {
-    baseDir: "./src/",
-    index: "index.html"
+    baseDir: './dest/',
+    index: 'index.html',
   },
-  // 'open' :'external',
-  proxy: false,
   port: 3000,
-  middleware: ssi({
-    baseDir: "./src/",
-    ext: ".html",
-    version: "1.4.0"
-  })
+  middleware: connectSSI({
+    baseDir: './dest/',
+    ext: '.html',
+  }),
+  open: 'external',
+  notify: false,
 };
-
-// SSI使用
-// module.exports = {
-//   'files': './src/**/*.css, ./src/**/*.js, ./**/*.shtml',
-//   'server': {
-//     baseDir: './html/',
-//     index: 'index.shtml'
-//   },
-//   'port': 3000,
-//   'middleware': connectSSI({
-//     baseDir: './html/',
-//     ext: '.shtml'
-//   }),
-//   // 'open': 'external',
-//   'notify': false
-// };

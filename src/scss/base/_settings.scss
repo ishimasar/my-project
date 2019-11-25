@@ -1,0 +1,949 @@
+/**
+ * # settings.scss
+ *   - mixin, variable settings
+ *   - mixin(上の方)とvariable(下の方)全部入り
+ */
+
+/**
+ * ----------
+ * mixin
+ * ----------
+ */
+
+/* media query mixin */
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpointVar, $breakpoint)} {
+    @content;
+  }
+}
+
+/* font-family mixin */
+
+/* 見出しフォント用 */
+@mixin headFont {
+
+  @include mq(sp-tb) {
+    font-family: $headFontMb;
+  }
+
+  @include mq(tb-dth) {
+    font-family: $headFontDt;
+  }
+
+  .browser-is-ie & {
+    @include mq(tb-dth) {
+      font-family: $ieFont;
+    }
+  }
+}
+
+/* 段落文章および通常フォント用 */
+@mixin sentenceFont {
+  @include mq(sp-tb) {
+    font-family: $sentenceFontMb;
+  }
+
+  @include mq(tb-dth) {
+    font-family: $sentenceFontDt;
+  }
+
+  .browser-is-ie & {
+    @include mq(tb-dth) {
+      font-family: $ieFont;
+    }
+  }
+}
+
+/* 欧文フォント用 */
+@mixin engFont {
+  font-family: $engFont;
+
+  @media print {
+    font-family: $engFontPrint;
+  }
+}
+
+/* -----
+
+/* content width mixin */
+@mixin contentWidth {
+  @include mq(tb-dth) {
+    width: 965px;
+    max-width: 100%;
+
+    margin: {
+      right: auto;
+      left: auto;
+    }
+  }
+}
+
+/* calculation view width mixin */
+@function calcSize($num, $unit) {
+
+  // ここに利用する単位の式を追加していく。
+  @if ($unit=='vw') {
+    @return $num / $maxWidth * 100#{$unit};
+  }
+}
+
+/* ratina support mixin */
+/**
+ * Retina対応を行う
+ * 例）@include retinaImage('/img/bg_main_visual','png');
+ */
+@mixin retinaImage($file, $type) {
+  background-image: url($file+'.'+$type);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (-moz-min-device-pixel-ratio: 2) {
+    & {
+      background-image: url($file+'@2x.'+$type);
+    }
+  }
+}
+
+/**
+ * -----
+ * icon mixin
+ */
+
+/* 線 */
+@mixin line($pos, $width) {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: $width + px;
+    height: 2px;
+    background-color: $accentColor;
+
+    @if ($pos=='bottom') {
+      bottom: 0;
+    }
+
+    @if ($pos=='top') {
+      top: 0;
+    }
+  }
+}
+
+/* 矢印 (>) */
+@mixin arrow($size, $width, $pos, $baseColor) {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: #{$size}px;
+  height: #{$size}px;
+  border-style: solid;
+
+  @if $pos=='left' {
+    border-width: 0 0 $width + px $width + px;
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  @else if $pos=='top' {
+    border-width: $width + px 0 0 $width + px;
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  @else if $pos=='bottom' {
+    border-width: 0 $width + px $width + px 0;
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  @else {
+    border-width: $width + px $width + px 0 0;
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  border-color: $baseColor;
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s,
+  border-color cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  content: '';
+}
+
+/* インライン矢印 (>) */
+@mixin inlineArrow($size, $width, $pos, $baseColor) {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  top: -0.1em;
+  width: #{$size}px;
+  height: #{$size}px;
+  border-style: solid;
+
+  @if $pos=='left' {
+    border-width: 0 0 $width + px $width + px;
+    margin-right: 8px;
+  }
+
+  @else if $pos=='top' {
+    border-width: $width + px 0 0 $width + px;
+    margin-left: 8px;
+  }
+
+  @else if $pos=='bottom' {
+    border-width: 0 $width + px $width + px 0;
+    margin-left: 8px;
+  }
+
+  @else {
+    border-width: $width + px $width + px 0 0;
+    margin-left: 8px;
+  }
+
+  border-color: $baseColor;
+  transform: translate(0, 0) rotate(45deg);
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s,
+  border-color cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  content: '';
+}
+
+/* 矢印 (→) */
+@mixin arrow2($direction,
+  $color: $triangleColorBlack,
+  $color2: $hoverColorBlack) {
+  span {
+    position: absolute;
+    transition: all 0.2s ease;
+
+    &:before {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      transition: all 0.2s ease;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      transition: all 0.2s ease;
+      background-color: $color;
+    }
+  }
+
+  &:hover,
+  a:hover & {
+    @include mq(tb-dh) {
+      color: $color2;
+    }
+  }
+
+  @if $direction=='right'or $direction=='left' {
+    span {
+      top: calc(50% - 2px);
+      height: 4px;
+
+      @include mq(down-more) {
+        width: 14px;
+      }
+
+      @include mq(tb-dh) {
+        width: 20px;
+      }
+
+      .browser-is-ie & {
+        @include mq(tb-dh) {
+          top: calc(36% - 2px);
+        }
+      }
+
+      &:after {
+        height: 1px;
+        bottom: 0;
+        left: 0;
+
+        @include mq(down-more) {
+          width: 10px;
+        }
+
+        @include mq(tb-dh) {
+          width: 16px;
+        }
+      }
+    }
+  }
+
+  @if $direction=='top'or $direction=='bottom' {
+    span {
+      right: 0;
+      width: 4px;
+
+      @include mq(down-more) {
+        top: calc(50% - 6px);
+        height: 14px;
+      }
+
+      @include mq(tb-dh) {
+        top: calc(50% - 7px);
+        height: 15px;
+      }
+
+      &:after {
+        width: 1px;
+        height: 10px;
+      }
+    }
+  }
+
+  @if $direction=='right' {
+    span {
+      &:before {
+        bottom: 0;
+        right: 0;
+        border-width: 4px 0 0 4px;
+        border-color: transparent transparent transparent $color;
+      }
+    }
+
+    &:hover,
+    a:hover & {
+      span {
+        &:before {
+          @include mq(tb-dh) {
+            border-color: transparent transparent transparent $color2;
+          }
+        }
+
+        &:after {
+          @include mq(tb-dh) {
+            background-color: $color2;
+          }
+        }
+
+        &:nth-of-type(1) {
+          @include mq(tb-dh) {
+            transform: translateX(8px);
+          }
+        }
+      }
+    }
+  }
+
+  @if $direction=='left' {
+    span {
+      &:before {
+        bottom: 0;
+        left: 0;
+        border-width: 4px 4px 0 0;
+        border-color: transparent $color transparent transparent;
+      }
+
+      &:after {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    &:hover,
+    a:hover & {
+      span {
+        &:before {
+          @include mq(tb-dh) {
+            border-color: transparent $color2 transparent transparent;
+          }
+        }
+
+        &:after {
+          @include mq(tb-dh) {
+            background-color: $color2;
+          }
+        }
+
+        &:nth-of-type(1) {
+          @include mq(tb-dh) {
+            transform: translateX(-8px);
+          }
+        }
+      }
+    }
+  }
+
+  @if $direction=='bottom' {
+    span {
+      &:before {
+        bottom: 0;
+        right: 0;
+        border-width: 5px 3.5px 0 3.5px;
+        border-color: $color transparent transparent transparent;
+      }
+
+      &:nth-of-type(2) {
+        transform: translateY(-15px);
+      }
+    }
+
+    &:hover,
+    a:hover & {
+      span {
+        &:before {
+          @include mq(tb-dh) {
+            border-color: $color2 transparent transparent transparent;
+          }
+        }
+
+        &:after {
+          @include mq(tb-dh) {
+            background-color: $color2;
+          }
+        }
+
+        &:nth-of-type(1) {
+          @include mq(tb-dh) {
+            transform: translateY(8px);
+          }
+        }
+      }
+    }
+  }
+
+  @if $direction=='top' {
+    span {
+      &:before {
+        top: 0;
+        right: 0;
+        border-width: 0 3.5px 5px 3.5px;
+        border-color: transparent transparent $color2 transparent;
+      }
+
+      &:after {
+        bottom: 0;
+        left: 0;
+      }
+
+      &:nth-of-type(2) {
+        transform: translateY(15px);
+      }
+    }
+
+    &:hover,
+    a:hover & {
+      span {
+        &:before {
+          @include mq(tb-dh) {
+            border-color: transparent transparent $color2 transparent;
+          }
+        }
+
+        &:after {
+          @include mq(tb-dh) {
+            background-color: $color2;
+          }
+        }
+
+        &:nth-of-type(1) {
+          @include mq(tb-dh) {
+            transform: translateY(-8px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 三角形 */
+@mixin triangle($width, $height, $pos, $color) {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  @if $pos=='bottom' {
+    border-bottom: 0 + px transparent solid;
+    border-right: $width/2 + px transparent solid;
+    border-left: $width/2 + px transparent solid;
+    border-top: $height + px $color solid;
+  }
+
+  @if $pos=='top' {
+    border-top: 0 + px transparent solid;
+    border-right: $width/2 + px transparent solid;
+    border-left: $width/2 + px transparent solid;
+    border-bottom: $height + px $color solid;
+  }
+
+  @if $pos=='left' {
+    border-left: 0 + px transparent solid;
+    border-top: $height/2 + px transparent solid;
+    border-bottom: $height/2 + px transparent solid;
+    border-right: $width + px $color solid;
+  }
+
+  @if $pos=='right' {
+    border-right: 0 + px transparent solid;
+    border-top: $height/2 + px transparent solid;
+    border-bottom: $height/2 + px transparent solid;
+    border-left: $width + px $color solid;
+  }
+
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s,
+  border-color cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+  content: '';
+}
+
+/* 別窓(target="_blank"用) */
+@mixin blank($width, $height, $pos, $color, $top) {
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    #{$pos}: 0;
+    top: $top;
+    width: $width - 2 + 0px;
+    height: $height - 2 + 0px;
+    background-color: $white;
+    border: 1px solid $red;
+    box-sizing: border-box;
+    transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s,
+      border-color cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+
+    @if $pos=='right' {
+      margin-right: 2px;
+    }
+  }
+
+  &:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    top: calc(#{$top} + 2px);
+    #{$pos}: 0;
+    width: $width - 2 + 0px;
+    height: $height - 2 + 0px;
+
+    border: {
+      style: solid;
+      width: 0 1px 1px 0;
+      color: $color;
+    }
+
+    box-sizing: border-box;
+    transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s,
+    border-color cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+
+    @if $pos=='left' {
+      margin-left: 2px;
+    }
+  }
+}
+
+/* 「＋」 */
+@mixin plus($size, $width, $baseColor) {
+  position: absolute;
+  top: calc(50% - #{$size}px / 2);
+  width: #{$size}px;
+  height: #{$size}px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: #{$width}px;
+    height: #{$size}px;
+    position: absolute;
+    top: 0;
+    left: calc(50% - #{$width}px/2);
+    background-color: $baseColor;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: #{$size}px;
+    height: #{$width}px;
+    position: absolute;
+    top: calc(50% - #{$width}px/2);
+    left: 0;
+    background-color: $baseColor;
+  }
+}
+
+/**
+ * ------
+ * layout & arrangement mixin
+ */
+
+/* block要素のセンター配置 */
+@mixin centerLayout($width, $max-width: false) {
+  display: block;
+
+  @if $max-width {
+    width: $width;
+    max-width: $max-width;
+  }
+
+  @else {
+    width: $width;
+  }
+
+  margin: {
+    right: auto;
+    left: auto;
+  }
+}
+
+/* display: flex;を用いた上下左右中央配置 */
+@mixin centeringFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* absoluteを用いた上下中央配置 */
+@mixin verticalCentering {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* absoluteを用いた上下左右中央配置 いずれかも選択可能 */
+@mixin centeringElements($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if $horizontal and $vertical {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @else if $horizontal {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  @else if $vertical {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+/* block要素の縦横比率固定 */
+@mixin aspectRatio($width, $height, $image: null) {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: ($height / $width) * 100%;
+
+  @if $image !=null {
+    background: url($image) 50% 50% no-repeat;
+    background-size: cover;
+  }
+}
+
+/**
+ * -----
+ * その他mixin
+ */
+
+/* モーション中の画像のにじみを抑える */
+@mixin bugfixImgMotion($duration) {
+  backface-visibility: visible;
+  animation: bugfixImgMotion #{$duration} linear 0s 1 normal;
+}
+
+/* テキストリンクのhoverエフェクト */
+@mixin textHover {
+  transition: color 0.45s $easeOutCubic, background-color 0.45s $easeOutCubic;
+
+  &:hover {
+    text-decoration: none;
+    transition: color 0.3s $easeInOutQuad,
+      background-color 0.3s $easeInOutQuad;
+
+    svg {
+      transition: color 0.45s $easeOutCubic,
+        background-color 0.45s $easeOutCubic;
+
+      &:hover {
+        transition: color 0.3s $easeInOutQuad,
+          background-color 0.3s $easeInOutQuad;
+      }
+    }
+  }
+}
+
+/* figure mixin */
+
+/* 正円 */
+@mixin circle($size) {
+  width: $size + px;
+  height: $size + px;
+  border-radius: 50%;
+}
+
+/**
+ * ----------
+ * variable
+ * ----------
+ */
+
+/* media query variable - map type */
+/**
+ * ブレイクポイントはコンピュータ/モニタ、
+ * webと親和性の高い「"8"の倍数」を基準値とし、
+ * 以下の4(+2)タイプのメディアクエリを使用してスタイルを書く
+ *
+ * ▼定義
+ * キー名 : 画面サイズ  : 想定デバイス
+ * sp     : 767px以下   : スマートフォン(smart phone)
+ * tb     : 768~1023px  : タブレット(tablet)
+ * dtl    : 1024~1599px : デスクトップPC・小型サイズ(desktop low)
+ * dth    : 1600以上    : デスクトップPC・大型サイズ(desktop high)
+ * sp-tb  : 1023以下    : スマホ~タブレットの画面サイズをカバー
+ * tb-dth : 768以上     : タブレット~デスクトップの画面サイズをカバー
+ */
+
+$breakpointVar: ('sp': 'print, screen and (max-width:'(767 / 16) + em ')',
+  'tb': 'print, screen and (min-width:'(768 / 16) + em ') and (max-width:'(1023 / 16) + em ')',
+  'dtl': 'print, screen and (min-width:'(1024 / 16) + em ') and (max-width:'(1599 / 16) + em ')',
+  'dth': 'print, screen and (min-width:'(1600 / 16) + em ')',
+  'sp-tb': 'print, screen and (max-width:'(1023 / 16) + em ')',
+  'tb-dth': 'print, screen and (min-width:'(768 / 16) + em ')'
+) !default;
+
+/* font-family */
+/**
+ * - 上方でmixin化して記述の手間を軽減している
+ * - デバイス別の接尾辞(suffix)
+ *   Mb: Mobile, Tablet
+ *   Dt: Desktop
+ */
+
+/* 見出しフォント */
+$headFontMb:
+'YakuHanJPs',
+'Noto Serif JP',
+'ヒラギノ角ゴ Pro W3',
+'Hiragino Kaku Gothic Pro',
+'メイリオ',
+'Meiryo';
+$headFontDt:
+'YakuHanJPs',
+'Noto Serif JP',
+'Yu Gothic',
+'游ゴシック',
+YuGothic,
+'ヒラギノ角ゴ Pro W3',
+'Hiragino Kaku Gothic Pro',
+'メイリオ',
+'Meiryo';
+
+/* 段落文章フォント */
+$sentenceFontMb:
+'YakuHanJPs',
+'Noto Sans JP',
+'ヒラギノ角ゴ Pro W3',
+'Hiragino Kaku Gothic Pro',
+'メイリオ',
+'Meiryo';
+$sentenceFontDt:
+'YakuHanJPs',
+'Noto Sans JP',
+'Yu Gothic Medium',
+'游ゴシック Medium',
+'Yu Gothic',
+'游ゴシック',
+YuGothic,
+'ヒラギノ角ゴ Pro W3',
+'Hiragino Kaku Gothic Pro',
+'メイリオ',
+'Meiryo';
+
+/* 欧文フォント / 主に単独で飾り用途 */
+$engFont: 'Cabin',
+sans-serif;
+$printEngFont: 'arial',
+sans-serif;
+
+/* 数字フォント / 主に単独で強調・飾りなど用途 */
+$numberFontA: 'Lato',
+'sans-serif';
+$numberFontB: 'Roboto Condensed',
+'sans-serif';
+
+/* IE(11)用フォント */
+$ieFont: 'メイリオ',
+Meiryo,
+sans-serif;
+
+// -----------
+// font-size
+// 調和数列に基づくサイズ比率
+
+$fontSizeL4: 1rem * 8 / 3; // 2.66666rem / 42.66666px
+$fontSizeL3: 1rem * 8 / 4; // 2rem / 32px
+$fontSizeL2: 1rem * 8 / 5; // 1.6rem / 25.6px
+$fontSizeL1: 1rem * 8 / 6; // 1.33333rem / 21.33333px
+$fontSizeM2: 1rem * 8 / 7; // 1.14286rem / 18.28571px
+$fontSizeM1: 1rem; // 16px
+$fontSizeS1: 1rem * 8 / 9; // 0.88889rem / 14.22222px
+$fontSizeS2: 1rem * 8 / 10; // 0.8rem / 12.8px
+
+// -----------
+// Color
+
+// 基本カラー定義
+$black: #000;
+$red: #e60027;
+$grayblue: #b4b7be;
+$white: #ffffff;
+$navy: #1d273d;
+$gray: #ccc;
+$deepblue: #050e26;
+$subblack: #060916;
+$pink: #ff8888;
+$lightpink: #f7b3be;
+$beige: #f2f2f2;
+
+// テキストカラー
+$textColorBlack: $black;
+$textColorRed: $red;
+$textColorGBlue: $grayblue;
+$textColorWhite: $white;
+$textColorNavy: $navy;
+$textColorGray: $gray;
+
+// hover時カラー
+$hoverColorRed: $red;
+$hoverColorBlack: $black;
+$hoverColorWhite: $white;
+$hoverColorPink: $pink;
+
+// 背景カラー
+$bgColorRed: $red;
+$bgColorGBlue: $grayblue;
+$bgColorDBlue: $deepblue;
+$bgColorNavy: $navy;
+$bgColorWhite: $white;
+$bgColorBlack: $black;
+$bgColorBeige: $beige;
+
+// ボーダーカラー
+$bdColorWhite: $white;
+$bdColorGray: $gray;
+$bdColorLightPink: $lightpink;
+
+// ボタンカラー
+$buttonColorRed: $red;
+$buttonColorWhite: $white;
+
+// 矢印カラー
+$arrowColorRed: $red;
+$arrowColorWhite: $white;
+
+// 三角図形カラー
+$triangleColorBlack: $black;
+$triangleColorRed: $red;
+$triangleColorNavy: $navy;
+
+// Back To Topボタンカラー
+$toTopBgColor: $black;
+$toTopHoverColor: #555;
+
+// -----------
+// box-shadow
+$baseShadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+$hoverShadow: 0 3px 15px 0 rgba(0, 0, 0, 0.24);
+$mutedShadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+$mutedHoverShadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+
+// -----------
+// other
+$baseRadius: 6px;
+$muteRadius: 4px;
+$contentWidth: 965px;
+$maxWidth: 1600;
+$hoverScale: scale(1.1);
+
+// -----------
+// KeyFrames
+
+// 画像モーション
+@keyframes visualImgAni {
+  0% {
+    transform: scale(1.093);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.01);
+  }
+}
+
+// IE用フォールバック
+@keyframes visualImgAniIE {
+  0% {
+    transform: scale(1.1) rotate(0.1deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.01) rotate(0.1deg);
+  }
+}
+
+// モーション中の画像のにじみ抑える
+@keyframes bugfixImgMotion {
+  0% {
+    backface-visibility: hidden;
+  }
+
+  99.9% {
+    backface-visibility: hidden;
+  }
+
+  100% {
+    backface-visibility: visible;
+  }
+}
+
+// -----------
+// easing
+
+// sine
+$easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+// quad
+$easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+// cubic
+$easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+// quart
+$easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+// quint
+$easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+// expo
+$easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+$easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+// circ
+$easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+$easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+$easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+// back
+$easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// マウスオン時のモーション
+$inTransition: color .25s $easeInOutQuad,
+background-color .25s $easeInOutQuad,
+transform .25s $easeInOutQuad;
+
+// マウスオフ時のモーション
+$outTransition: color .3s $easeOutCubic,
+background-color .3s $easeInOutQuad,
+transform .3s $easeInOutQuad;

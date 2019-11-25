@@ -1,0 +1,18 @@
+//- ----------
+//- パンくずリスト mixin
+
+mixin breadcrumb(levels)
+  ul.cmn-breadcrumb(itemscope itemtype="http://schema.org/BreadcrumbList")
+    each level, index in levels
+      - var count = index + 1
+      - var link = level[1]
+
+      li(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+        if count != levels.length
+          a.cmn-breadcrumb__link(href=link itemprop="item")
+            span(itemprop="name").cmn-breadcrumb__text #{level[0]}
+          meta(itemprop="position" content!=count)
+        else
+          .cmn-breadcrumb__link(href=link itemprop="item" aria-current="page")
+            span(itemprop="name").cmn-breadcrumb__text #{level[0]}
+          meta(itemprop="position" content!=count)

@@ -1,0 +1,112 @@
+/**
+ * # settings-flsz.scss
+ *   - fluid-responsive font-size mixin
+ *     訳: フォントが流動的にサイズ可変するmixin
+ *   - Sass側での処理設定が多いためsettings.scssから分離した
+ * -----
+ * このmixinの引数の取り方
+ * @include flsz(sizeMax値, sizeMin値, $screenMax:key, $screenMin:key);
+ *
+ * 使い方例
+ * .fluid-font-size1 {
+ * @include flsz(32px, 18.2857px, tb, sp);
+ * }
+ *
+ * .fluid-font-size2 {
+ *  @include flsz(25.6px, 16px, tb, sp);
+ * }
+ *
+ * .fluid-padding {
+ * @include flsz(12px, 8px, tb, dt, padding);
+ * }
+ */
+
+/* CSS Default Font Size */
+$css-default-font-size: 16px;
+
+/* Breakpoint */
+$screen: (sp: 767px,
+  tb: 1023px,
+  dt: 1599px) !default;
+
+/* 数値から単位を除外 */
+@function strip-unit($number) {
+  @if (type-of($number)=='number'and not unitless($number)) {
+    @return $number;
+  }
+
+  @return $number / ($number * 0 + 1);
+}
+
+/* `px` から `rem` に変換 */
+@function px2rem($number) {
+  $result: $number;
+
+  @if (not(unit($number)=='px')) {
+    @return $result;
+  }
+
+  $result: strip-unit($number / $css-default-font-size) * 1rem;
+
+  @return $result;
+}
+
+/* `px` から `em` に変換 */
+@function px2em($number, $parent-number: $css-default-font-size) {
+  $result: $number;
+
+  @if (not(unit($number)=='px')) {
+    @return $result;
+  }
+
+  $result: strip-unit($number / $parent-number) * 1em;
+
+  @return $result;
+}
+
+/* fluid size */
+@mixin flsz($max-font-size, $min-font-size, $max-viewport, $min-viewport, $propaty: 'font-size') {
+
+  $maxvw: 0;
+  $minvw: 0;
+
+  @if(type-of($max-viewport)==number) {
+    $maxvw: $max-viewport;
+  }
+
+  @if(type-of($min-viewport)==number) {
+    $minvw: $min-viewport;
+  }
+
+  @each $key,
+  $value in $screen {
+    @if(($key==$max-viewport) and ($maxvw==0)) {
+      $maxvw: $value;
+    }
+
+    @if(($key==$min-viewport) and ($minvw==0)) {
+      $minvw: $value;
+    }
+  }
+
+  $x: $minvw / 100;
+  $y: 100 * ($max-font-size - $min-font-size) / ($maxvw - $minvw);
+  $z: $min-font-size;
+
+  @if($px2rem) {
+    $z: px2rem($z);
+  }
+
+  #{$propaty}: $z;
+
+  $maxmq: px2em($maxvw + 1);
+  $minmq: px2em($minvw + 1);
+
+  @media (min-width: #{$minmq}) {
+    #{$propaty}: calc(#{$z} + ((1vw - #{$x}) * #{strip-unit($y)}));
+  }
+
+  @media (min-width: #{$maxmq}) {
+    #{$propaty}: $max-font-size;
+  }
+}

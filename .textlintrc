@@ -4,7 +4,7 @@
   "rules": {
     "preset-japanese": true,
     "prh": {
-      "rulePaths": ["./prh_basic_rules.yml", "./textlint_rules.yml"]
+      "rulePaths": ["./textlint_rules/prh_basic_rules.yml", "./textlint_rules/textlint_rules.yml"]
     },
     // よくある誤用
     "ja-no-abusage": true,
