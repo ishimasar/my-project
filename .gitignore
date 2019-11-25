@@ -1,0 +1,7 @@
+Thumbs.db
+.DS_Stroregit
+node_modules/
+dest/
+package-lock.json
+yarn-error.log
+textlint_rules/*
